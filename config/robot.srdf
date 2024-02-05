@@ -23,12 +23,18 @@
     <group name="gripper">
         <link name="gripper_bottom"/>
         <link name="gripper_top"/>
-        <joint name="gripper_bottom_joint"/>
-        <joint name="gripper_top_joint"/>
-        <chain base_link="forearm" tip_link="tool"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="initial" group="gripper">
+    <group_state name="ready" group="arm">
+        <joint name="forearm_joint" value="-1.1831"/>
+        <joint name="shoulder_joint" value="0"/>
+        <joint name="upperarm_joint" value="0.6043"/>
+    </group_state>
+    <group_state name="open" group="gripper">
+        <joint name="gripper_bottom_joint" value="0.0688"/>
+        <joint name="gripper_top_joint" value="-0.0688"/>
+    </group_state>
+    <group_state name="close" group="gripper">
         <joint name="gripper_bottom_joint" value="0"/>
         <joint name="gripper_top_joint" value="0"/>
     </group_state>
