@@ -31,6 +31,12 @@
         <joint name="shoulder_joint" value="0"/>
         <joint name="upperarm_joint" value="0.6043"/>
     </group_state>
+    <group_state name="open" group="gripper">
+        <joint name="gripper" value="0.0688"/>
+    </group_state>
+    <group_state name="close" group="gripper">
+        <joint name="gripper" value="0.0688"/>
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="end_effector" parent_link="tool" group="gripper" parent_group="arm"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
