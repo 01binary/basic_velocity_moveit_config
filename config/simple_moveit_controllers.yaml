@@ -7,15 +7,9 @@ controller_list:
       - shoulder_joint
       - upperarm_joint
       - forearm_joint
-  - name: gripper_controller_top
+  - name: gripper_controller
     action_ns: gripper_action
     type: GripperCommand
     default: True
     joints:
-      - gripper_top_joint
-  - name: gripper_controller_bottom
-    action_ns: gripper_action
-    type: GripperCommand
-    default: True
-    joints:
-      - gripper_bottom_joint
+      - gripper
