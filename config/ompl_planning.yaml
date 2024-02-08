@@ -224,5 +224,5 @@ gripper:
     - AITstar
     - ABITstar
     - BITstar
-  projection_evaluator: joints(gripper_bottom_joint,gripper_top_joint)
+  projection_evaluator: joints(gripper,gripper_bottom_mimic)
   longest_valid_segment_fraction: 0.005
