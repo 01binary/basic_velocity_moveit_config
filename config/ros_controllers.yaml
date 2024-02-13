@@ -22,5 +22,4 @@ arm_controller:
       i_clamp: 1
 gripper_controller:
   type: position_controllers/JointTrajectoryController
-  joints:
-    - gripper
+  joint: gripper
