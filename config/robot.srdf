@@ -10,57 +10,51 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="arm">
-        <link name="shoulder"/>
+        <link name="base"/>
         <link name="upperarm"/>
         <link name="forearm"/>
-        <link name="tool"/>
+        <link name="hand"/>
+        <joint name="base_joint"/>
         <joint name="shoulder_joint"/>
-        <joint name="upperarm_joint"/>
-        <joint name="forearm_joint"/>
-        <joint name="wrist"/>
-        <chain base_link="shoulder" tip_link="tool"/>
+        <joint name="elbow_joint"/>
+        <joint name="wrist_joint"/>
+        <chain base_link="base" tip_link="hand"/>
     </group>
-    <group name="gripper">
-        <link name="gripper_bottom"/>
-        <link name="gripper_top"/>
-        <joint name="gripper"/>
+    <group name="hand">
+        <link name="finger1"/>
+        <link name="finger2"/>
+        <joint name="finger_joint"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="ready" group="arm">
-        <joint name="forearm_joint" value="-1.1831"/>
-        <joint name="shoulder_joint" value="0"/>
-        <joint name="upperarm_joint" value="0.6043"/>
+    <group_state name="tuck" group="arm">
+        <joint name="base_joint" value="0"/>
+        <joint name="elbow_joint" value="1.5708"/>
+        <joint name="shoulder_joint" value="-0.8417"/>
+        <joint name="wrist_joint" value="0"/>
     </group_state>
-    <group_state name="open" group="gripper">
-        <joint name="gripper" value="0.0688"/>
+    <group_state name="open" group="hand">
+        <joint name="finger_joint" value="0.07"/>
     </group_state>
-    <group_state name="close" group="gripper">
-        <joint name="gripper" value="0.0688"/>
+    <group_state name="close" group="hand">
+        <joint name="finger_joint" value="0"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="end_effector" parent_link="tool" group="gripper" parent_group="arm"/>
+    <end_effector name="end_effector" parent_link="hand" group="hand" parent_group="arm"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="shoulder"/>
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <disable_collisions link1="dummy" link2="forearm" reason="Default"/>
-    <disable_collisions link1="dummy" link2="gripper_bottom" reason="Default"/>
-    <disable_collisions link1="dummy" link2="gripper_top" reason="Default"/>
-    <disable_collisions link1="dummy" link2="shoulder" reason="Never"/>
-    <disable_collisions link1="dummy" link2="tool" reason="Adjacent"/>
-    <disable_collisions link1="dummy" link2="upperarm" reason="Never"/>
-    <disable_collisions link1="forearm" link2="gripper_bottom" reason="Default"/>
-    <disable_collisions link1="forearm" link2="gripper_top" reason="Default"/>
-    <disable_collisions link1="forearm" link2="shoulder" reason="Never"/>
-    <disable_collisions link1="forearm" link2="tool" reason="Adjacent"/>
+    <disable_collisions link1="base" link2="finger1" reason="Never"/>
+    <disable_collisions link1="base" link2="finger2" reason="Never"/>
+    <disable_collisions link1="base" link2="hand" reason="Never"/>
+    <disable_collisions link1="base" link2="upperarm" reason="Adjacent"/>
+    <disable_collisions link1="finger1" link2="finger2" reason="Default"/>
+    <disable_collisions link1="finger1" link2="forearm" reason="Never"/>
+    <disable_collisions link1="finger1" link2="hand" reason="Adjacent"/>
+    <disable_collisions link1="finger1" link2="upperarm" reason="Never"/>
+    <disable_collisions link1="finger2" link2="forearm" reason="Never"/>
+    <disable_collisions link1="finger2" link2="hand" reason="Adjacent"/>
+    <disable_collisions link1="finger2" link2="upperarm" reason="Never"/>
+    <disable_collisions link1="forearm" link2="hand" reason="Adjacent"/>
     <disable_collisions link1="forearm" link2="upperarm" reason="Adjacent"/>
-    <disable_collisions link1="gripper_bottom" link2="gripper_top" reason="Never"/>
-    <disable_collisions link1="gripper_bottom" link2="shoulder" reason="Never"/>
-    <disable_collisions link1="gripper_bottom" link2="tool" reason="Adjacent"/>
-    <disable_collisions link1="gripper_bottom" link2="upperarm" reason="Never"/>
-    <disable_collisions link1="gripper_top" link2="shoulder" reason="Never"/>
-    <disable_collisions link1="gripper_top" link2="tool" reason="Adjacent"/>
-    <disable_collisions link1="gripper_top" link2="upperarm" reason="Never"/>
-    <disable_collisions link1="shoulder" link2="tool" reason="Never"/>
-    <disable_collisions link1="shoulder" link2="upperarm" reason="Adjacent"/>
-    <disable_collisions link1="tool" link2="upperarm" reason="Never"/>
+    <disable_collisions link1="hand" link2="upperarm" reason="Never"/>
 </robot>

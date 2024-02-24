@@ -193,9 +193,9 @@ arm:
     - AITstar
     - ABITstar
     - BITstar
-  projection_evaluator: joints(shoulder_joint,upperarm_joint)
+  projection_evaluator: joints(base_joint,shoulder_joint)
   longest_valid_segment_fraction: 0.005
-gripper:
+hand:
   planner_configs:
     - AnytimePathShortening
     - SBL
@@ -224,5 +224,5 @@ gripper:
     - AITstar
     - ABITstar
     - BITstar
-  projection_evaluator: joints(gripper,gripper_bottom_mimic)
+  projection_evaluator: joints(finger1_joint,finger2_joint)
   longest_valid_segment_fraction: 0.005
